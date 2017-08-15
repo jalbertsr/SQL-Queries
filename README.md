@@ -2,7 +2,7 @@
 
 # Descripición 
 
-Practica de ejercicios de consultas SQL en dos bases de datos relacionales, en cada carpeta se puede encontrar el script para crear y rellenar la base de datos respectivamente. Para este ejercicio se uso SQL Developer para la creación y diseño de la base de datos y Oracles SQL para ejecutar la base de datos y realizar las respectivas consultas.
+Practica de ejercicios de consultas SQL en dos bases de datos relacionales, en cada carpeta se puede encontrar el script para crear y rellenar las bases de datos respectivamente. Para este ejercicio se uso SQL Developer para la creación y diseño de las bases de datos y Oracle SQL para ejecutarlas las bases de datos y realizar las respectivas consultas.
 
 ## Tabla Relacional Base de datos AEROLINIAS:
 
