@@ -4,17 +4,9 @@
 --
 -- BASE DE DADES
 -- 2011-2012
--- Grau Enginyeria Informàtica
---
------------------------------------------
--- Debora Gil, debora.gil@cvc.uab.cat
--- Oriol Ramos, oriol.ramos@cvc.uab.cat
------------------------------------------
--- Enric Martí Gòdia, Enric.Marti@uab.cat
---
+-- Grau Enginyeria InformÃ tica
 -- Escola d'Enginyeria
--- Universitat Autònoma de Barcelona
--- 
+--
 -----------------------------------------
 -----------------------------------------
 --
@@ -26,7 +18,7 @@
 --
 -- Si ja s'ha executat previament, l'script
 -- esborra les taules de la base de dades i les torna a editar. 
--- De tal manera, cal IGNORAR els missatges d'error que dóna 
+-- De tal manera, cal IGNORAR els missatges d'error que dÃ³na 
 -- la primera vegada que s'executa. 
 --
 
@@ -46,9 +38,9 @@ set termout on
 prompt %
 prompt %
 prompt % Bases de Dades 1
-prompt % Enginyeria Informàtica. 2011-2012
+prompt % Enginyeria InformÃ tica. 2011-2012
 prompt % Escola dEnginyeria (EE)
-prompt % Universitat Autònoma de Barcelona (UAB)
+prompt % Universitat AutÃ²noma de Barcelona (UAB)
 prompt %
 prompt %
 prompt %       "ESPECTACLES"  
@@ -66,7 +58,7 @@ prompt %
 set termout off
 
 
--- Indiquem la creació de les taules
+-- Indiquem la creaciÃ³ de les taules
 set termout on
 prompt %
 prompt _
@@ -98,7 +90,7 @@ CREATE TABLE ESPECTADORS (
   DNI             NUMBER        NOT NULL, 
   Nom             VARCHAR2 (20),
   Cognoms	      VARCHAR2 (30),
-  Adreça          VARCHAR2 (50), 
+  AdreÃ§a          VARCHAR2 (50), 
   Telefon         NUMBER, 
   Ciutat          VARCHAR2 (50), 
   Compte_Corrent  VARCHAR2 (25),
@@ -113,7 +105,7 @@ DROP TABLE RECINTES CASCADE CONSTRAINTS ;
 CREATE TABLE RECINTES ( 
   Codi     NUMBER        NOT NULL, 
   Nom      VARCHAR2 (50), 
-  Adreça   VARCHAR2 (50), 
+  AdreÃ§a   VARCHAR2 (50), 
   Ciutat   VARCHAR2 (50), 
   Telefon  NUMBER, 
   Horari   VARCHAR2 (50), 
@@ -188,17 +180,17 @@ prompt _		2. Afegint les restriccions -constraints-: Claus foranes
 prompt _
 set termout off
 
--- Referència ESPECTACLES --> RECINTES
+-- ReferÃ¨ncia ESPECTACLES --> RECINTES
 ALTER TABLE ESPECTACLES ADD  CONSTRAINT ESPECTACLES_FK1
  FOREIGN KEY (Codi_Recinte) 
   REFERENCES RECINTES (Codi) ;
 
--- Referència ZONES_RECINTE--> RECINTES
+-- ReferÃ¨ncia ZONES_RECINTE--> RECINTES
 ALTER TABLE ZONES_RECINTE ADD  CONSTRAINT ZONES_RECINTE_FK1
  FOREIGN KEY (Codi_Recinte) 
   REFERENCES RECINTES (Codi) ;
 
--- Referència PREUS_ESPECTACLES --> ESPECTACLES
+-- ReferÃ¨ncia PREUS_ESPECTACLES --> ESPECTACLES
 ALTER TABLE PREUS_ESPECTACLES ADD  CONSTRAINT PREUS_ESPECTACLES_FK1
  FOREIGN KEY (Codi_Espectacle) 
   REFERENCES ESPECTACLES (Codi) ;
@@ -208,22 +200,22 @@ ALTER TABLE PREUS_ESPECTACLES ADD  CONSTRAINT PREUS_ESPECTACLES_FK2
  FOREIGN KEY (Codi_Recinte, Zona) 
   REFERENCES ZONES_RECINTE (Codi_Recinte, Zona) ;
 
--- Referència SEIENTS --> ZONES_RECINTE
+-- ReferÃ¨ncia SEIENTS --> ZONES_RECINTE
 ALTER TABLE SEIENTS ADD  CONSTRAINT SEIENTS_FK1
  FOREIGN KEY (Codi_Recinte, Zona) 
   REFERENCES ZONES_RECINTE (Codi_Recinte, Zona) ;
 
--- Referència ENTRADES --> REPRESENTACIONS
+-- ReferÃ¨ncia ENTRADES --> REPRESENTACIONS
 ALTER TABLE ENTRADES ADD  CONSTRAINT ENTRADES_FK1
  FOREIGN KEY (Codi_Espectacle, Data, Hora) 
   REFERENCES REPRESENTACIONS (Codi_Espectacle, Data, Hora) ;
 
--- Referència ENTRADES --> SEIENTS 
+-- ReferÃ¨ncia ENTRADES --> SEIENTS 
 ALTER TABLE ENTRADES ADD  CONSTRAINT ENTRADES_FK2
  FOREIGN KEY (Codi_Recinte, Fila, Numero, Zona) 
   REFERENCES SEIENTS (Codi_Recinte, Fila, Numero, Zona) ;
 
--- Referència ENTRADES --> ESPECTADORS
+-- ReferÃ¨ncia ENTRADES --> ESPECTADORS
 ALTER TABLE ENTRADES ADD  CONSTRAINT ENTRADES_FK3
  FOREIGN KEY (DNI_Client) 
   REFERENCES ESPECTADORS (DNI) ;
@@ -236,7 +228,7 @@ prompt _
 set termout off
 
 --
--- Inserció de dades a les taulas de la base de dades Espectacles
+-- InserciÃ³ de dades a les taulas de la base de dades Espectacles
 --
 
 
@@ -244,35 +236,35 @@ set termout off
 -- Taula ESPECTADORS
 --
 
-INSERT INTO ESPECTADORS ( DNI, Nom, Cognoms, Adreça, Telefon, Ciutat, Compte_Corrent, Num_Targeta ) VALUES ( 
-10000000, 'Jordi', 'Robles Sánchez', 'Avda Tarraco, 35', 972773374, 'Tarragona', '1010-101-10-1000000000'
+INSERT INTO ESPECTADORS ( DNI, Nom, Cognoms, AdreÃ§a, Telefon, Ciutat, Compte_Corrent, Num_Targeta ) VALUES ( 
+10000000, 'Jordi', 'Robles SÃ¡nchez', 'Avda Tarraco, 35', 972773374, 'Tarragona', '1010-101-10-1000000000'
 , 987654321); 
-INSERT INTO ESPECTADORS ( DNI, Nom, Cognoms, Adreça, Telefon, Ciutat, Compte_Corrent, Num_Targeta ) VALUES ( 
+INSERT INTO ESPECTADORS ( DNI, Nom, Cognoms, AdreÃ§a, Telefon, Ciutat, Compte_Corrent, Num_Targeta ) VALUES ( 
 11111111, 'Pepe', 'Pinto Pando', 'C/ Pintat, 23', 938882882, 'Cerdanyola', '1111-111-11-1234567890'
 , 222222222); 
-INSERT INTO ESPECTADORS ( DNI, Nom, Cognoms, Adreça, Telefon, Ciutat, Compte_Corrent, Num_Targeta ) VALUES ( 
-22222222, 'José', 'Colorado Gris', 'C/ Colorin, 24', 938882883, 'Barcelona', '2222-222-22-2345678901'
+INSERT INTO ESPECTADORS ( DNI, Nom, Cognoms, AdreÃ§a, Telefon, Ciutat, Compte_Corrent, Num_Targeta ) VALUES ( 
+22222222, 'JosÃ©', 'Colorado Gris', 'C/ Colorin, 24', 938882883, 'Barcelona', '2222-222-22-2345678901'
 , 333333333); 
-INSERT INTO ESPECTADORS ( DNI, Nom, Cognoms, Adreça, Telefon, Ciutat, Compte_Corrent, Num_Targeta ) VALUES ( 
-33333333, 'Fernando', 'Vilariño Freire', 'C/ SQL, 84', 938882884, 'Cerdanyola', '3333-333-33-3456789012'
+INSERT INTO ESPECTADORS ( DNI, Nom, Cognoms, AdreÃ§a, Telefon, Ciutat, Compte_Corrent, Num_Targeta ) VALUES ( 
+33333333, 'Fernando', 'VilariÃ±o Freire', 'C/ SQL, 84', 938882884, 'Cerdanyola', '3333-333-33-3456789012'
 , 444444444); 
-INSERT INTO ESPECTADORS ( DNI, Nom, Cognoms, Adreça, Telefon, Ciutat, Compte_Corrent, Num_Targeta ) VALUES ( 
-44444444, 'Enric', 'Martí Gòdia', 'C/ Date, 29', 938882885, 'Sabadell', '4444-444-44-4567890123'
+INSERT INTO ESPECTADORS ( DNI, Nom, Cognoms, AdreÃ§a, Telefon, Ciutat, Compte_Corrent, Num_Targeta ) VALUES ( 
+44444444, 'Enric', 'MartÃ­ GÃ²dia', 'C/ Date, 29', 938882885, 'Sabadell', '4444-444-44-4567890123'
 , 555555555); 
-INSERT INTO ESPECTADORS ( DNI, Nom, Cognoms, Adreça, Telefon, Ciutat, Compte_Corrent, Num_Targeta ) VALUES ( 
-55555555, 'José', 'López Lacruz', 'C/ Xirgu, 34', 938882886, 'Sant Cugat del Vallès', '5555-555-55-5678901234'
+INSERT INTO ESPECTADORS ( DNI, Nom, Cognoms, AdreÃ§a, Telefon, Ciutat, Compte_Corrent, Num_Targeta ) VALUES ( 
+55555555, 'JosÃ©', 'LÃ³pez Lacruz', 'C/ Xirgu, 34', 938882886, 'Sant Cugat del VallÃ¨s', '5555-555-55-5678901234'
 , 666666666); 
-INSERT INTO ESPECTADORS ( DNI, Nom, Cognoms, Adreça, Telefon, Ciutat, Compte_Corrent, Num_Targeta ) VALUES ( 
-66666666, 'Luis', 'Marín Badia', 'Rambles, 87 3-1', 932083374, 'Barcelona', '6666-666-66-6789012345'
+INSERT INTO ESPECTADORS ( DNI, Nom, Cognoms, AdreÃ§a, Telefon, Ciutat, Compte_Corrent, Num_Targeta ) VALUES ( 
+66666666, 'Luis', 'MarÃ­n Badia', 'Rambles, 87 3-1', 932083374, 'Barcelona', '6666-666-66-6789012345'
 , 777777777); 
-INSERT INTO ESPECTADORS ( DNI, Nom, Cognoms, Adreça, Telefon, Ciutat, Compte_Corrent, Num_Targeta ) VALUES ( 
-77777777, 'Emili', 'Ponce Ribes', 'Aragó, 359 4-2', 931093388, 'Barcelona', '7777-777-77-7890123456'
+INSERT INTO ESPECTADORS ( DNI, Nom, Cognoms, AdreÃ§a, Telefon, Ciutat, Compte_Corrent, Num_Targeta ) VALUES ( 
+77777777, 'Emili', 'Ponce Ribes', 'AragÃ³, 359 4-2', 931093388, 'Barcelona', '7777-777-77-7890123456'
 , 888888888); 
-INSERT INTO ESPECTADORS ( DNI, Nom, Cognoms, Adreça, Telefon, Ciutat, Compte_Corrent, Num_Targeta ) VALUES ( 
-88888888, 'Rosa', 'Orellana Pérez', 'Merinals, 34 at-2', 937290032, 'Sabadell', '8888-888-88-8901234567'
+INSERT INTO ESPECTADORS ( DNI, Nom, Cognoms, AdreÃ§a, Telefon, Ciutat, Compte_Corrent, Num_Targeta ) VALUES ( 
+88888888, 'Rosa', 'Orellana PÃ©rez', 'Merinals, 34 at-2', 937290032, 'Sabadell', '8888-888-88-8901234567'
 , 999999999); 
-INSERT INTO ESPECTADORS ( DNI, Nom, Cognoms, Adreça, Telefon, Ciutat, Compte_Corrent, Num_Targeta ) VALUES ( 
-99999999, 'Vicenç', 'Portolés Susqueda', 'Llull, 298 4-3', 932061199, 'Barcelona', '9999-999-99-9012345678'
+INSERT INTO ESPECTADORS ( DNI, Nom, Cognoms, AdreÃ§a, Telefon, Ciutat, Compte_Corrent, Num_Targeta ) VALUES ( 
+99999999, 'VicenÃ§', 'PortolÃ©s Susqueda', 'Llull, 298 4-3', 932061199, 'Barcelona', '9999-999-99-9012345678'
 , 123456789); 
 commit;
 
@@ -281,30 +273,30 @@ commit;
 -- Taula RECINTES
 --
 
-INSERT INTO RECINTES ( Codi, Nom, Adreça, Ciutat, Telefon, Horari ) VALUES ( 
+INSERT INTO RECINTES ( Codi, Nom, AdreÃ§a, Ciutat, Telefon, Horari ) VALUES ( 
 100, 'Liceu', 'Les Rambles', 'Barcelona', 935813434, '22:00'); 
-INSERT INTO RECINTES ( Codi, Nom, Adreça, Ciutat, Telefon, Horari ) VALUES ( 
-101, 'Victòria', 'Rambla, 25', 'Barcelona', 932003294, '21:00'); 
-INSERT INTO RECINTES ( Codi, Nom, Adreça, Ciutat, Telefon, Horari ) VALUES ( 
-102, 'Nacional', 'Glòries, 35', 'Barcelona', 932049937, '22:00'); 
-INSERT INTO RECINTES ( Codi, Nom, Adreça, Ciutat, Telefon, Horari ) VALUES ( 
+INSERT INTO RECINTES ( Codi, Nom, AdreÃ§a, Ciutat, Telefon, Horari ) VALUES ( 
+101, 'VictÃ²ria', 'Rambla, 25', 'Barcelona', 932003294, '21:00'); 
+INSERT INTO RECINTES ( Codi, Nom, AdreÃ§a, Ciutat, Telefon, Horari ) VALUES ( 
+102, 'Nacional', 'GlÃ²ries, 35', 'Barcelona', 932049937, '22:00'); 
+INSERT INTO RECINTES ( Codi, Nom, AdreÃ§a, Ciutat, Telefon, Horari ) VALUES ( 
 103, 'Romea', 'P. Urquinaona, 12', 'Barcelona', 932003769, '22:00'); 
-INSERT INTO RECINTES ( Codi, Nom, Adreça, Ciutat, Telefon, Horari ) VALUES ( 
-104, 'La Faràndula', 'Alfons XIII, 67', 'Sabadell', 937250012, '18:00'); 
-INSERT INTO RECINTES ( Codi, Nom, Adreça, Ciutat, Telefon, Horari ) VALUES ( 
-105, 'Modern', 'Vinci, 54', 'Sant Cugat del Vallès', 937149932, '18:00'); 
-INSERT INTO RECINTES ( Codi, Nom, Adreça, Ciutat, Telefon, Horari ) VALUES ( 
+INSERT INTO RECINTES ( Codi, Nom, AdreÃ§a, Ciutat, Telefon, Horari ) VALUES ( 
+104, 'La FarÃ ndula', 'Alfons XIII, 67', 'Sabadell', 937250012, '18:00'); 
+INSERT INTO RECINTES ( Codi, Nom, AdreÃ§a, Ciutat, Telefon, Horari ) VALUES ( 
+105, 'Modern', 'Vinci, 54', 'Sant Cugat del VallÃ¨s', 937149932, '18:00'); 
+INSERT INTO RECINTES ( Codi, Nom, AdreÃ§a, Ciutat, Telefon, Horari ) VALUES ( 
 106, 'Municipal', 'Riera, 35', 'Girona', 972883256, '22:00'); 
-INSERT INTO RECINTES ( Codi, Nom, Adreça, Ciutat, Telefon, Horari ) VALUES ( 
+INSERT INTO RECINTES ( Codi, Nom, AdreÃ§a, Ciutat, Telefon, Horari ) VALUES ( 
 107, 'La Seu', 'Noguera, 35', 'Lleida', 973338298, '18:00'); 
-INSERT INTO RECINTES ( Codi, Nom, Adreça, Ciutat, Telefon, Horari ) VALUES ( 
+INSERT INTO RECINTES ( Codi, Nom, AdreÃ§a, Ciutat, Telefon, Horari ) VALUES ( 
 108, 'Valira', 'Rambla, 12', 'La Seu d''Urgell', 973239941, '18:00'); 
-INSERT INTO RECINTES ( Codi, Nom, Adreça, Ciutat, Telefon, Horari ) VALUES ( 
+INSERT INTO RECINTES ( Codi, Nom, AdreÃ§a, Ciutat, Telefon, Horari ) VALUES ( 
 109, 'Coliseu', 'Avda del Mar, 87', 'Tarragona', 974992310, '17:00'); 
-INSERT INTO RECINTES ( Codi, Nom, Adreça, Ciutat, Telefon, Horari ) VALUES ( 
-110, 'Auditori', 'Glòries, 38', 'Barcelona', 932087745, '21:00'); 
-INSERT INTO RECINTES ( Codi, Nom, Adreça, Ciutat, Telefon, Horari ) VALUES ( 
-111, 'Palau de la Música', 'Via Layetana, 232', 'Barcelona', 932034428, '21:30'); 
+INSERT INTO RECINTES ( Codi, Nom, AdreÃ§a, Ciutat, Telefon, Horari ) VALUES ( 
+110, 'Auditori', 'GlÃ²ries, 38', 'Barcelona', 932087745, '21:00'); 
+INSERT INTO RECINTES ( Codi, Nom, AdreÃ§a, Ciutat, Telefon, Horari ) VALUES ( 
+111, 'Palau de la MÃºsica', 'Via Layetana, 232', 'Barcelona', 932034428, '21:30'); 
 commit;
 
 
@@ -318,33 +310,33 @@ INSERT INTO ESPECTACLES ( Codi, Nom, Tipus, Data_Inicial, Data_Final, Interpret,
 ,  TO_Date( '03/24/2012 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM'), 'El Tricicle', 103); 
 INSERT INTO ESPECTACLES ( Codi, Nom, Tipus, Data_Inicial, Data_Final, Interpret, Codi_Recinte ) VALUES ( 
 1001, 'L''auca del senyor Esteve', 'Teatre',  TO_Date( '02/23/2012 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM')
-,  TO_Date( '03/03/2012 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM'), 'Pere Borràs', 105); 
+,  TO_Date( '03/03/2012 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM'), 'Pere BorrÃ s', 105); 
 INSERT INTO ESPECTACLES ( Codi, Nom, Tipus, Data_Inicial, Data_Final, Interpret, Codi_Recinte ) VALUES ( 
 1002, 'Els Pastorets', 'Teatre',  TO_Date( '12/26/2011 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM')
-,  TO_Date( '01/12/2012 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM'), 'La Joventut de la Faràndula'
+,  TO_Date( '01/12/2012 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM'), 'La Joventut de la FarÃ ndula'
 , 104); 
 INSERT INTO ESPECTACLES ( Codi, Nom, Tipus, Data_Inicial, Data_Final, Interpret, Codi_Recinte ) VALUES ( 
-1003, 'Concert de Nadal', 'Música',  TO_Date( '12/25/2011 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM')
+1003, 'Concert de Nadal', 'MÃºsica',  TO_Date( '12/25/2011 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM')
 ,  TO_Date( '12/25/2011 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM'), 'Orquestra Auditori'
 , 110); 
 INSERT INTO ESPECTACLES ( Codi, Nom, Tipus, Data_Inicial, Data_Final, Interpret, Codi_Recinte ) VALUES ( 
-1004, 'Concert d''any nou', 'Música',  TO_Date( '01/01/2012 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM')
+1004, 'Concert d''any nou', 'MÃºsica',  TO_Date( '01/01/2012 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM')
 ,  TO_Date( '01/08/2012 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM'), 'Orquestra Nacional d''Austria'
 , 110); 
 INSERT INTO ESPECTACLES ( Codi, Nom, Tipus, Data_Inicial, Data_Final, Interpret, Codi_Recinte ) VALUES ( 
-1005, 'Jazz a la tardor', 'Música',  TO_Date( '10/01/2011 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM')
+1005, 'Jazz a la tardor', 'MÃºsica',  TO_Date( '10/01/2011 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM')
 ,  TO_Date( '10/15/2011 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM'), 'George Benson', 111); 
 INSERT INTO ESPECTACLES ( Codi, Nom, Tipus, Data_Inicial, Data_Final, Interpret, Codi_Recinte ) VALUES ( 
 1006, 'La Ventafocs', 'Teatre',  TO_Date( '10/06/2011 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM')
-,  TO_Date( '10/20/2011 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM'), 'La Joventut de la Faràndula'
+,  TO_Date( '10/20/2011 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM'), 'La Joventut de la FarÃ ndula'
 , 104); 
 INSERT INTO ESPECTACLES ( Codi, Nom, Tipus, Data_Inicial, Data_Final, Interpret, Codi_Recinte ) VALUES ( 
-1007, 'El Màgic d''Oz', 'Teatre',  TO_Date( '11/01/2011 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM')
-,  TO_Date( '11/17/2011 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM'), 'La Joventut de la Faràndula'
+1007, 'El MÃ gic d''Oz', 'Teatre',  TO_Date( '11/01/2011 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM')
+,  TO_Date( '11/17/2011 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM'), 'La Joventut de la FarÃ ndula'
 , 106); 
 INSERT INTO ESPECTACLES ( Codi, Nom, Tipus, Data_Inicial, Data_Final, Interpret, Codi_Recinte ) VALUES ( 
 1008, 'Els Habitants de la Casa deshabitada', 'Teatre',  TO_Date( '12/07/2011 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM')
-,  TO_Date( '12/07/2011 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM'), 'Sant Vicenç', 104); 
+,  TO_Date( '12/07/2011 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM'), 'Sant VicenÃ§', 104); 
 INSERT INTO ESPECTACLES ( Codi, Nom, Tipus, Data_Inicial, Data_Final, Interpret, Codi_Recinte ) VALUES ( 
 1009, 'West Side Story', 'Musical',  TO_Date( '11/07/2011 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM')
 ,  TO_Date( '11/27/2011 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM'), 'T de Teatre', 105); 
@@ -356,11 +348,11 @@ INSERT INTO ESPECTACLES ( Codi, Nom, Tipus, Data_Inicial, Data_Final, Interpret,
 ,  TO_Date( '01/20/2012 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM'), 'Placido Domingo'
 , 100); 
 INSERT INTO ESPECTACLES ( Codi, Nom, Tipus, Data_Inicial, Data_Final, Interpret, Codi_Recinte ) VALUES ( 
-1012, 'La extraña pareja', 'Teatre',  TO_Date( '06/08/2012 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM')
+1012, 'La extraÃ±a pareja', 'Teatre',  TO_Date( '06/08/2012 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM')
 ,  TO_Date( '06/30/2012 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM'), 'Grup Tarraco', 102); 
 INSERT INTO ESPECTACLES ( Codi, Nom, Tipus, Data_Inicial, Data_Final, Interpret, Codi_Recinte ) VALUES ( 
 1013, 'La Caputxeta', 'Teatre',  TO_Date( '05/10/2012 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM')
-,  TO_Date( '05/17/2012 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM'), 'La Joventut de la Faràndula'
+,  TO_Date( '05/17/2012 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM'), 'La Joventut de la FarÃ ndula'
 , 108); 
 INSERT INTO ESPECTACLES ( Codi, Nom, Tipus, Data_Inicial, Data_Final, Interpret, Codi_Recinte ) VALUES ( 
 1014, 'Pallassos sense fronteres', 'Teatre',  TO_Date( '05/26/2012 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM')
@@ -370,8 +362,8 @@ INSERT INTO ESPECTACLES ( Codi, Nom, Tipus, Data_Inicial, Data_Final, Interpret,
 1015, 'Mar i Cel', 'Musical',  TO_Date( '01/12/2012 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM')
 ,  TO_Date( '03/23/2012 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM'), 'Dagoll Dagom', 101); 
 INSERT INTO ESPECTACLES ( Codi, Nom, Tipus, Data_Inicial, Data_Final, Interpret, Codi_Recinte ) VALUES ( 
-1016, 'El país de les Cent Paraules', 'Teatre',  TO_Date( '04/05/2012 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM')
-,  TO_Date( '04/05/2012 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM'), 'La Joventut de la Faràndula'
+1016, 'El paÃ­s de les Cent Paraules', 'Teatre',  TO_Date( '04/05/2012 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM')
+,  TO_Date( '04/05/2012 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM'), 'La Joventut de la FarÃ ndula'
 , 108); 
 INSERT INTO ESPECTACLES ( Codi, Nom, Tipus, Data_Inicial, Data_Final, Interpret, Codi_Recinte ) VALUES ( 
 1017, 'Exit', 'Teatre',  TO_Date( '01/12/2012 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM')
@@ -383,22 +375,22 @@ INSERT INTO ESPECTACLES ( Codi, Nom, Tipus, Data_Inicial, Data_Final, Interpret,
 1019, 'Cinco Horas con Mario', 'Teatre',  TO_Date( '06/15/2012 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM')
 ,  TO_Date( '06/22/2012 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM'), 'Lola Herrera', 103); 
 INSERT INTO ESPECTACLES ( Codi, Nom, Tipus, Data_Inicial, Data_Final, Interpret, Codi_Recinte ) VALUES ( 
-1020, 'Cianur i puntes de coixí', 'Teatre',  TO_Date( '12/25/2011 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM')
+1020, 'Cianur i puntes de coixÃ­', 'Teatre',  TO_Date( '12/25/2011 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM')
 ,  TO_Date( '12/31/2011 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM'), 'Grup Tarraco', 105); 
 INSERT INTO ESPECTACLES ( Codi, Nom, Tipus, Data_Inicial, Data_Final, Interpret, Codi_Recinte ) VALUES ( 
 1021, 'Sweeney Todd', 'Teatre',  TO_Date( '11/11/2011 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM')
 ,  TO_Date( '11/18/2011 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM'), 'Constantino Romero'
 , 106); 
 INSERT INTO ESPECTACLES ( Codi, Nom, Tipus, Data_Inicial, Data_Final, Interpret, Codi_Recinte ) VALUES ( 
-1022, 'Veus búlgares', 'Música',  TO_Date( '09/29/2011 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM')
-,  TO_Date( '01/25/2012 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM'), 'Cor Nacional de Bulgària'
+1022, 'Veus bÃºlgares', 'MÃºsica',  TO_Date( '09/29/2011 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM')
+,  TO_Date( '01/25/2012 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM'), 'Cor Nacional de BulgÃ ria'
 , 111); 
 INSERT INTO ESPECTACLES ( Codi, Nom, Tipus, Data_Inicial, Data_Final, Interpret, Codi_Recinte ) VALUES ( 
 1023, 'El jorobado de Notre Dame', 'Musical',  TO_Date( '03/28/2012 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM')
 ,  TO_Date( '03/28/2012 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM'), 'Dagoll Dagom', 101); 
 INSERT INTO ESPECTACLES ( Codi, Nom, Tipus, Data_Inicial, Data_Final, Interpret, Codi_Recinte ) VALUES ( 
 1024, 'En Patufet', 'Teatre',  TO_Date( '11/08/2011 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM')
-,  TO_Date( '11/15/2011 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM'), 'La Joventut de la Faràndula'
+,  TO_Date( '11/15/2011 12:00:00 AM', 'MM/DD/YYYY HH:MI:SS AM'), 'La Joventut de la FarÃ ndula'
 , 104); 
 commit;
  
@@ -2486,7 +2478,7 @@ commit;
 
 set termout on
 prompt %
-prompt % Base de Dades ESPECTACLES instal·lada i enllestida! Gaudiu-ne...
+prompt % Base de Dades ESPECTACLES instalÂ·lada i enllestida! Gaudiu-ne...
 prompt %
 
 
